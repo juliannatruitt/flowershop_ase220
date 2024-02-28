@@ -76,3 +76,27 @@ function delete_flower(index) {
     flower_cards(); // Re-render flower cards after deletion
 }
 
+function flower_details(id){
+    if (id !== null && id >= 0 && id < flowerarray.length) {
+        let html = 
+        `<div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <img src="${flowerarray[id].image}" class="card-img-top" alt="Image of a ${flowerarray[id].name}">
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <dl class="row" id="pet_box">
+            </dl>
+            <dt class="col-sm-3">Name:</dt>
+            <dd class="col-sm-9">${flowerarray[id].name}</dd>
+            <dt class="col-sm-3">Flowers included:</dt>
+            <dd class="col-sm-9">${flowerarray[id].flowers}</dd>
+            <dt class="col-sm-3">For occassion:</dt>
+            <dd class="col-sm-9">${flowerarray[id].occassion}</dd>
+            <dt class="col-sm-3">Price:</dt>
+            <dd class="col-sm-9">${flowerarray[id].price}</dd>
+        `;
+        document.getElementById('flower_details_container').innerHTML = html;
+    } else {
+        window.location.href = 'index.html';
+    }
+}
