@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             flowerarray = data;
-            flower_cards();
+            flower_card();
         })
         .catch(error => console.error("Error fetching data:", error));
 });
@@ -33,7 +33,7 @@ async function flower_card(flower, index) {
                     <div class="card-body">
                         <h5 class="card-title">${flower.name}</h5>
                         <p class="card-text">Price: ${flower.price}</p>
-                        <a href="detail.html" class="card-link">More information</a>
+                        <a href="detail.html?id=${index}" class="card-link">More information</a>
                         <button class="btn btn-small btn-primary btn-edit-flower">Edit</button>
                         <button class="btn btn-sm btn-danger" data-index="${index}">Delete</button>
                     </div>
@@ -44,32 +44,25 @@ async function flower_card(flower, index) {
     } catch (error) {
         console.error("Error while processing flower data:", error);
     }
-    if (offset+rpp > flowerarray.length) more_flowers.hidden = true;
+    // if (offset+rpp > flowerarray.length) more_flowers.hidden = true;
 }
 
-
-
-
-function flower_cards() {
-    document.getElementById("flower_container").innerHTML = ""; // Clear existing content
-    for (let i = offset; i < Math.min(offset + rpp, flowerarray.length); i++) {
-        flower_card(flowerarray[i], i);
-    }
-    // Add event listeners for edit and delete buttons
-    document.querySelectorAll('.btn-edit-flower').forEach(button => {
-        button.addEventListener('click', function() {
-            // Implement edit functionality
-            // You need to determine the index of the flower to edit
-            // Then you can call edit_flower(index, newData)
-        });
-    });
-    document.querySelectorAll('.btn-danger').forEach(button => {
-        button.addEventListener('click', function() {
-            const index = parseInt(button.getAttribute('data-index'));
-            delete_flower(index);
-        });
-    });
-}
+// function flower_cards() {
+//     // Add event listeners for edit and delete buttons
+//     document.querySelectorAll('.btn-edit-flower').forEach(button => {
+//         button.addEventListener('click', function() {
+//             // Implement edit functionality
+//             // You need to determine the index of the flower to edit
+//             // Then you can call edit_flower(index, newData)
+//         });
+//     });
+//     document.querySelectorAll('.btn-danger').forEach(button => {
+//         button.addEventListener('click', function() {
+//             const index = parseInt(button.getAttribute('data-index'));
+//             delete_flower(index);
+//         });
+//     });
+// }
 
 // Function to handle editing a flower card
 function edit_flower(index, newData) {
