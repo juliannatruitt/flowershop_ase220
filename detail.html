@@ -1,0 +1,36 @@
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <style>
+      body {
+        background-color: lightseagreen;
+      }
+    </style>
+</head>
+<body>
+  <h1 style="float: none; position: relative; text-align: center; color: black;">
+    About Me!
+  </h1>
+  <div id="flower_details_container" class="container">
+  </div>
+</body>
+<footer>
+  <p><a href="index.html" style="float: none; position: absolute; left: 50%;" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Return Home</a></p>
+  <script src="functions.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      $.get(document_url, function(data, status){
+        let id = getQueryParam('id');
+        flowerarray = data;
+        flower_details(id, flowerarray);
+      });
+ });
+  </script>
+</footer>
+</html>
+<!---
+  said font download fail when i tried running w this:
+      font-family: "Audiowide", sans-serif;
+-->

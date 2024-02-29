@@ -1,29 +1,158 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
         <link href="reboot.css"></link>
         <title>Floreality</title>
+        <style>
+            h1{
+                float: none;
+                position: relative;
+                text-align: center;
+                color: black;
+            }
+            #flower_container{
+                height: 80%;
+                width: auto;
+            }
+        </style>
     </head>
     <body>
-        <h1 style="float: none; position: relative; text-align: center; color: black;">
+        <h1>
             Floreality
         </h1>
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-          </ul>
-          <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
+        <div class="container">
+            <div class="row" id="flower_container">	</div>
+            <div><button class='btn btn-primary' id="more_flowers">load more flowers</button></div>
         </div>
+<<<<<<< HEAD
     </body>
     <footer>
     </footer>
 </html>
+=======
+        <script src="functions.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+		      document.addEventListener("DOMContentLoaded", async function() {
+              $.get(document_url, function(data, status){
+                flowerarray = data;
+                for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
+                  flower_card(flowerarray[i], i);
+              }
+            });
+          });
+          $(()=>{
+            $(document).on('click', '#more_flowers', function() {
+              offset+=3;
+              for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
+                flower_card(flowerarray[i], i);
+                if (offset+rpp > flowerarray.length-1) more_flowers.hidden = true; 
+              }
+            });
+          });
+
+        </script>
+    </body>
+</html>
+
+
+<!--
+//  let document_url = "http://jsonblob.com/api/jsonBlob/1212461580683173888";
+//  var flowerarray=  '';
+//  document.addEventListener("DOMContentLoaded", function() {
+//    $.get(document_url, async function(data, status){
+//      flowerarray = await data;
+//      for (let i=offset; i < Math.min(offset+rpp, data.length); i++){
+//      flower_card(data[i], i);
+//       }
+//    });
+//  });
+//  let more_flowers = document.createElement('button');
+//  more_flowers.classList.add('btn');
+//  more_flowers.classList.add('btn-primary');
+//  more_flowers.innerText='load more flowers';
+//  more_flowers.addEventListener('click', function() {
+//    offset+=3;
+//    for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
+//      flower_card(petarray[i], i);
+//    }
+//  });
+//  document.querySelector('#button_container').append(more_flowers);
+
+
+//$.getJSON("http://jsonblob.com/api/1212461580683173888", function(data, status){
+//              flowerarray = data;
+//              console.log(status);
+//              for (let i=offset; i < Math.min(offset+rpp, data.length); i++){
+//              flower_card(data[i], i);
+//              }
+//                });
+//              });
+//            });
+-->
+<!--
+
+  <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
+        <link href="reboot.css"></link>
+        <title>Floreality</title>
+        <style>
+            h1{
+                float: none;
+                position: relative;
+                text-align: center;
+                color: black;
+            }
+            #flower_container{
+                height: 80%;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Floreality
+        </h1>
+        <div class="container">
+            <div class="row" id="flower_container">	</div>
+            <div><button class='btn btn-primary' id="more_flowers">load more flowers</button></div>
+        </div>
+        <script src="functions.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+		      document.addEventListener("DOMContentLoaded", async function() {
+              $.get(document_url, function(data, status){
+              flowerarray = data;
+              for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
+              flower_card(flowerarray[i], i);
+              }
+              });
+          });
+          $(()=>{
+            $(document).on('click', '#more_flowers', function() {
+              offset+=3;
+              for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
+                flower_card(flowerarray[i], i);
+                if (offset+rpp > flowerarray.length-1) more_flowers.hidden = true; 
+              }
+            });
+          });
+
+        </script>
+    </body>
+</html>
+-->
+>>>>>>> 3dc88ac7523e2f35d5cda6a3db8b4843e05dd25e
