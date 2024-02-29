@@ -1,14 +1,14 @@
-const api_url="http://jsonblob.com/api/1212461580683173888";
-
-document.addEventListener("DOMContentLoaded", function() {
-    fetch(api_url)
-        .then(response => response.json())
-        .then(data => {
-            flowerarray = data;
-            flower_card();
-        })
-        .catch(error => console.error("Error fetching data:", error));
-});
+//const api_url="http://jsonblob.com/api/jsonBob/1212461580683173888";
+//
+//document.addEventListener("DOMContentLoaded", function() {
+//    fetch(api_url)
+//        .then(response => response.json())
+//        .then(data => {
+//            flowerarray = data;
+//            flower_card();
+//        })
+//        .catch(error => console.error("Error fetching data:", error));
+//});
 // async function load_file(url) {
 //     try {
 //         const response = await fetch(url);
@@ -34,7 +34,7 @@ async function flower_card(flower, index) {
                         <h5 class="card-title">${flower.name}</h5>
                         <p class="card-text">Price: ${flower.price}</p>
                         <a href="detail.html?id=${index}" class="card-link">More information</a>
-                        <button class="btn btn-small btn-primary btn-edit-flower">Edit</button>
+                        <button class="btn btn-small btn-primary btn-edit-flower" href="edit.html/${index}">Edit</button>
                         <button class="btn btn-sm btn-danger" data-index="${index}">Delete</button>
                     </div>
                 </div>
@@ -44,7 +44,6 @@ async function flower_card(flower, index) {
     } catch (error) {
         console.error("Error while processing flower data:", error);
     }
-    // if (offset+rpp > flowerarray.length) more_flowers.hidden = true;
 }
 
 // function flower_cards() {
