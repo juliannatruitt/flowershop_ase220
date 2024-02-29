@@ -82,12 +82,6 @@ function edit_flower(index, newData) {
     renderFlowerCards(); // Re-render flower cards after editing
 }
 
-// Function to handle deleting a flower card
-function delete_flower(index) {
-    flowerarray.splice(index, 1);
-    flower_cards(); // Re-render flower cards after deletion
-}
-
 function flower_details(id, flowerarray){
     console.log(id);
     if (id !== null && id >= 0 && id < flowerarray.length) {
@@ -113,3 +107,28 @@ function flower_details(id, flowerarray){
         window.location.href = 'index.html';
     }
 }
+
+$(document).on('click', '.btn-danger', function(event) {
+    event.stopPropagation();
+    console.log($(this))
+    const index = parseInt($(this).attr('data-index'));
+    console.log(index);
+    petarray.splice(index, 1);
+    $(this).closest('.col-lg-4').remove();
+    $.ajax({
+        type: "PUT",
+        url: document_url,
+        data: JSON.stringify(flowerarray),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(xhr,data,response){
+            console.log(xhr);
+            console.log(data);
+            console.log(response);
+            console.log(response.getAllResponseHeaders());
+        },
+        error: function(errMsg) {
+            console.log(errMsg);
+        }
+    });
+});
