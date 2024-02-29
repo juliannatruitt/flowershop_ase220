@@ -10,12 +10,18 @@
     <body>
         <div class="container">
         <form>
+<<<<<<< HEAD
+            <img id="flower_picture">
+            <div>Name<input type="text" id="name" /></div>
+            <div id="flowers">Flowers: </div>
+=======
             <div>Image of the bouquet:<input type="file" id="flower_picture"></div>
             <div>Name of the bouquet:<input type="text" id="name" /></div>
             <div>Flowers in the bouquet:<input type="text" id="flowers"></div>
+>>>>>>> e85f7a69970a5be39b834b8e85edaf4fd62c0fc6
             <div>Occasion: <textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br /></div>
             <div>Price: <input type="text" id="price" /></div>
-            <div><button id="btn-save-changes" class="btn btn-primary">Save Changes</a></div>
+            <div><button id="btn-save-changes" class="btn btn-primary">Save Changes</button></div>
             <a href="index.html">Go back to index </a>
         </form>
         </div>
@@ -25,11 +31,13 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
+            var flowerarray = [];
+            var id = 0;
             document.addEventListener("DOMContentLoaded", function() {
                 $.get(document_url, function(data, status){
                     flowerarray = data;
-                    let id = getQueryParam('id')
-                    document.getElementById('flower_picture').src = flowerarray[id].image;
+                    id = getQueryParam('id')
+                    //document.getElementById('flower_picture').src = flowerarray[id].image;
                     $('#name').val(`${flowerarray[id].name}`);
                     $('#flowers').empty();
                     for (let i=0; i<flowerarray[id].flowers.length; i++){
@@ -37,9 +45,20 @@
                         html = `<br /><input type="text" class="contained-flowers" value="${flowerarray[id].flowers[i]}" />`;
                         $('#flowers').append(html);
                     }
-                    $('#occasion').val(`${flowerarray[id].occasion}`);
+                    $('#occasion').val(flowerarray[id].occasion);
                     $('#price').val(`${flowerarray[id].price}`);
+                });
             });
+                $(document).ready(function(){
+                    console.log(flowerarray);
+                    $(document).on('click', '#btn-save-changes', function(e){
+                        e.preventDefault();
+                        flowerarray[id].name=$('#name').val();
+                        flowerarray[id].occasion = $('#occasion').val();
+                        flowerarray[id].price = $('#price').val();
+                        console.log(flowerarray[id]);
+                    // console.log(flowerarray[id]);
+                    })
             });
         </script>
     </body>
