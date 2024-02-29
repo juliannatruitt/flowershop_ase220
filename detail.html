@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <style>
       body {
-        font-family: "Audiowide", sans-serif;
         background-color: lightseagreen;
       }
     </style>
@@ -19,10 +18,19 @@
 <footer>
   <p><a href="index.html" style="float: none; position: absolute; left: 50%;" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Return Home</a></p>
   <script src="functions.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      let id = getQueryParam('id');
-      flower_details(id) });
+      $.get(document_url, function(data, status){
+        let id = getQueryParam('id');
+        flowerarray = data;
+        flower_details(id, flowerarray);
+      });
+ });
   </script>
 </footer>
 </html>
+<!---
+  said font download fail when i tried running w this:
+      font-family: "Audiowide", sans-serif;
+-->

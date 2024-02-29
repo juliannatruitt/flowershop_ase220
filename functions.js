@@ -88,7 +88,8 @@ function delete_flower(index) {
     flower_cards(); // Re-render flower cards after deletion
 }
 
-function flower_details(id){
+function flower_details(id, flowerarray){
+    console.log(id);
     if (id !== null && id >= 0 && id < flowerarray.length) {
         let html = 
         `<div class="row">
@@ -103,7 +104,7 @@ function flower_details(id){
             <dt class="col-sm-3">Flowers included:</dt>
             <dd class="col-sm-9">${flowerarray[id].flowers}</dd>
             <dt class="col-sm-3">For occassion:</dt>
-            <dd class="col-sm-9">${flowerarray[id].occassion}</dd>
+            <dd class="col-sm-9">${flowerarray[id].occasion}</dd>
             <dt class="col-sm-3">Price:</dt>
             <dd class="col-sm-9">${flowerarray[id].price}</dd>
         `;
