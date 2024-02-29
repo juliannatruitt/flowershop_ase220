@@ -118,7 +118,7 @@ $(document).on('click', '.btn-danger', function(event) {
     $.ajax({
         type: "PUT",
         url: document_url,
-        data: JSON.stringify(flowerarrayarray),
+        data: JSON.stringify(flowerarray),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(xhr,data,response){
