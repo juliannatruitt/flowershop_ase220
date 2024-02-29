@@ -22,7 +22,7 @@
 
 var offset = 0;
 var rpp = 3;
-let document_url = "http://jsonblob.com/api/1212461580683173888"
+let document_url = "https://jsonblob.com/api/1212461580683173888"
 var flowerarray= [];
 //   document.addEventListener("DOMContentLoaded", function() {
 //   $.get(document_url, function(data, status){
@@ -80,12 +80,6 @@ function getQueryParam(key){
 function edit_flower(index, newData) {
     flowerarray[index] = newData;
     renderFlowerCards(); // Re-render flower cards after editing
-}
-
-// Function to handle deleting a flower card
-function delete_flower(index) {
-    flowerarray.splice(index, 1);
-    flower_cards(); // Re-render flower cards after deletion
 }
 
 function flower_details(id, flowerarray){
