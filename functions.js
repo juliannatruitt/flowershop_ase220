@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 var offset = 0;
-var rpp = 9;
+var rpp = 3;
 
 async function flower_card(flower, index) {
     try {

@@ -1,0 +1,233 @@
+[
+    {
+      "name": "Rose Romance",
+      "flowers": [
+        "Red Roses",
+        "White Lilies",
+        "Baby's Breath"
+      ],
+      "occasion": "Anniversary - Perfect for couples celebrating their anniversary, especially for romantic milestones like the first or fiftieth. Elicits feelings of love, passion, and commitment, symbolizing the enduring bond between partners.",
+      "price": 50.99,
+      "image": "images/rose_romance.jpg"
+    },
+    {
+      "name": "Spring Splendor",
+      "flowers": [
+        "Tulips",
+        "Daffodils",
+        "Hyacinths"
+      ],
+      "occasion": "Spring Celebration - Ideal for celebrating the arrival of spring, whether it's for a festive gathering or to brighten someone's day. Evokes a sense of renewal, joy, and optimism, reflecting the vibrant colors and freshness of the season.",
+      "price": 45.99,
+      "image": "images/spring_splendor.jpg"
+    },
+    {
+      "name": "Sunflower Sunshine",
+      "flowers": [
+        "Sunflowers",
+        "Daisies",
+        "Solidago"
+      ],
+      "occasion": "Get Well Soon - A cheerful bouquet to uplift the spirits of someone recovering from illness or surgery. Brings feelings of warmth, positivity, and hope, symbolizing the brightness and energy of a sunny day.",
+      "price": 39.99,
+      "image": "images/sunflower_sunshine.jpg"
+    },
+    {
+      "name": "Lavender Love",
+      "flowers": [
+        "Lavender",
+        "Roses",
+        "Eucalyptus"
+      ],
+      "occasion": "Mother's Day - A delightful gift to show appreciation and affection for mothers, grandmothers, or mother figures. Conveys tenderness, gratitude, and relaxation, offering a soothing and fragrant experience for the recipient.",
+      "price": 55.99,
+      "image": "images/lavender_love.jpg"
+    },
+    {
+      "name": "Pastel Elegance",
+      "flowers": [
+        "Pink Roses",
+        "White Orchids",
+        "Carnations"
+      ],
+      "occasion": "Birthday - Suitable for celebrating birthdays of all ages, from sweet sixteen to milestone occasions. Inspires feelings of joy, admiration, and appreciation, adding a touch of elegance and grace to the celebration.",
+      "price": 49.99,
+      "image": "images/pastel_elegance.jpg"
+    },
+    {
+      "name": "Wildflower Whimsy",
+      "flowers": [
+        "Wildflowers",
+        "Queen Anne's Lace",
+        "Ferns"
+      ],
+      "occasion": "Just Because - A spontaneous gesture to brighten someone's day for no particular reason. Invokes a sense of spontaneity, playfulness, and delight, bringing a touch of nature's beauty into everyday life.",
+      "price": 42.99,
+      "image": "images/wildflower_whimsy.jpg"
+    },
+    {
+      "name": "Sunny Serenade",
+      "flowers": [
+        "Yellow Roses",
+        "Orange Gerberas",
+        "Alstroemeria"
+      ],
+      "occasion": "Graduation - A congratulatory gift for graduates embarking on new adventures and achievements. Radiates feelings of pride, optimism, and excitement, symbolizing the bright future ahead.",
+      "price": 47.99,
+      "image": "images/sunny_serenade.jpg"
+    },
+    {
+      "name": "Winter Wonderland",
+      "flowers": [
+        "White Roses",
+        "Blue Delphinium",
+        "Silver Brunia"
+      ],
+      "occasion": "Christmas - Perfect for adding a touch of festive cheer to holiday celebrations and decorations. Evokes a sense of enchantment, purity, and magic, capturing the serene beauty of a winter landscape.",
+      "price": 59.99,
+      "image": "images/winter_wonderland.jpg"
+    },
+    {
+      "name": "Tropical Paradise",
+      "flowers": [
+        "Orchids",
+        "Birds of Paradise",
+        "Ginger"
+      ],
+      "occasion": "Vacation Send-off - An exotic farewell gift for someone embarking on a tropical vacation or journey. Brings feelings of adventure, excitement, and wanderlust, invoking visions of lush landscapes and tropical breezes.",
+      "price": 65.99,
+      "image": "images/tropical_paradise.jpg"
+    },
+    {
+      "name": "Autumn Harvest",
+      "flowers": [
+        "Sunflowers",
+        "Orange Roses",
+        "Hypericum Berries"
+      ],
+      "occasion": "Thanksgiving - Ideal for decorating Thanksgiving tables or expressing gratitude to loved ones. Conveys warmth, abundance, and appreciation, celebrating the bountiful blessings of the harvest season.",
+      "price": 54.99,
+      "image": "images/autumn_harvest.jpg"
+    },
+    {
+      "name": "Classic Red",
+      "flowers": [
+        "Red Roses",
+        "Mini Carnations",
+        "Foliage"
+      ],
+      "occasion": "Valentine's Day - The quintessential expression of love and romance for couples celebrating Valentine's Day. Stirs feelings of passion, desire, and devotion, symbolizing the timeless allure of romantic love.",
+      "price": 69.99,
+      "image": "images/classic_red.jpg"
+    },
+    {
+      "name": "Purple Passion",
+      "flowers": [
+        "Purple Orchids",
+        "Calla Lilies",
+        "Statice"
+      ],
+      "occasion": "Engagement - A luxurious bouquet to congratulate couples on their engagement and new chapter together. Exudes elegance, sophistication, and excitement, symbolizing the deepening of romantic commitment.",
+      "price": 75.99,
+      "image": "images/purple_passion.jpg"
+    },
+    {
+      "name": "Eternal Love",
+      "flowers": [
+        "Red Roses",
+        "White Calla Lilies",
+        "Baby's Breath"
+      ],
+      "occasion": "Wedding - An exquisite choice for wedding ceremonies, symbolizing everlasting love and unity. Evokes emotions of joy, purity, and devotion, marking the beginning of a lifelong journey together.",
+      "price": 89.99,
+      "image": "images/eternal_love.jpg"
+    },
+    {
+      "name": "Serenity Garden",
+      "flowers": [
+        "White Roses",
+        "Blue Hydrangeas",
+        "Lavender"
+      ],
+      "occasion": "Sympathy - A comforting gesture to express condolences and support during times of loss and mourning. Offers solace, tranquility, and remembrance, providing a sense of peace and comfort to those grieving.",
+      "price": 79.99,
+      "image": "images/serenity_garden.jpg"
+    },
+    {
+      "name": "Citrus Burst",
+      "flowers": [
+        "Yellow Lilies",
+        "Orange Roses",
+        "Green Hypericum"
+      ],
+      "occasion": "Housewarming - A vibrant bouquet to celebrate a new home and wish happiness and prosperity to the homeowners. Adds a touch of brightness and cheer to the new living space.",
+      "price": 49.99,
+      "image": "images/citrus_burst.jpg"
+    },
+    {
+      "name": "Cherry Blossom Bliss",
+      "flowers": [
+        "Cherry Blossoms",
+        "Pink Peonies",
+        "Dogwood"
+      ],
+      "occasion": "Spring Festival - Reflects the beauty of cherry blossoms in full bloom, marking the arrival of spring with elegance and grace. Brings a sense of renewal, hope, and celebration to the occasion.",
+      "price": 64.99,
+      "image": "images/cherry_blossom_bliss.jpg"
+    },
+    {
+      "name": "Ocean Breeze",
+      "flowers": [
+        "Blue Iris",
+        "White Daisies",
+        "Sea Lavender"
+      ],
+      "occasion": "Summer Party - Conjures images of sandy shores and ocean waves, bringing a refreshing and calming breeze to summer celebrations. Inspires relaxation, joy, and carefree moments of bliss.",
+      "price": 55.99,
+      "image": "images/ocean_breeze.jpg"
+    },
+    {
+      "name": "Golden Glow",
+      "flowers": [
+        "Yellow Roses",
+        "Goldenrod",
+        "Solidago"
+      ],
+      "occasion": "Retirement - Celebrates the golden years and new beginnings in retirement, symbolizing achievement, fulfillment, and the warmth of cherished memories. Marks the start of a rewarding journey ahead.",
+      "price": 49.99,
+      "image": "images/golden_glow.jpg"
+    },
+    {
+      "name": "Pink Paradise",
+      "flowers": [
+        "Pink Roses",
+        "Alstroemeria",
+        "Carnations"
+      ],
+      "occasion": "Baby Shower - Welcomes a new arrival with tender love and care, celebrating the joy and anticipation of parenthood. Radiates happiness, innocence, and the promise of beautiful beginnings.",
+      "price": 42.99,
+      "image": "images/pink_paradise.jpg"
+    },
+    {
+      "name": "Ruby Radiance",
+      "flowers": [
+        "Red Gerberas",
+        "White Roses",
+        "Caspia"
+      ],
+      "occasion": "Prom - Adds a touch of glamour and sophistication to prom night, complementing elegant attire and creating lasting memories. Sparkles with excitement, romance, and the promise of magical moments.",
+      "price": 59.99,
+      "image": "images/ruby_radiance.jpg"
+    },
+    {
+      "name": "Frosty Morning",
+      "flowers": [
+        "White Lilies",
+        "Blue Thistle",
+        "Silver Dust"
+      ],
+      "occasion": "Winter Solstice - Embraces the serene beauty of winter's first light, capturing the crisp air and delicate frost of a frosty morning. Inspires introspection, wonder, and the quiet magic of the season.",
+      "price": 57.99,
+      "image": "images/frosty_morning.jpg"
+    }
+  ]
