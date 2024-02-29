@@ -22,7 +22,15 @@
 
 var offset = 0;
 var rpp = 3;
-
+let document_url = "http://jsonblob.com/api/1212461580683173888"
+var flowerarray= [];
+//   document.addEventListener("DOMContentLoaded", function() {
+//   $.get(document_url, function(data, status){
+//   flowerarray = data;
+//   console.log(flowerarray);
+//   });
+// });
+//
 async function flower_card(flower, index) {
     try {
         let html = '';
@@ -34,7 +42,7 @@ async function flower_card(flower, index) {
                         <h5 class="card-title">${flower.name}</h5>
                         <p class="card-text">Price: ${flower.price}</p>
                         <a href="detail.html?id=${index}" class="card-link">More information</a>
-                        <button class="btn btn-small btn-primary btn-edit-flower" href="edit.html/${index}">Edit</button>
+                        <a href="update.html?id=${index}"><button class="btn btn-small btn-primary btn-edit-flower">Edit</button></a>
                         <button class="btn btn-sm btn-danger" data-index="${index}">Delete</button>
                     </div>
                 </div>
@@ -44,6 +52,11 @@ async function flower_card(flower, index) {
     } catch (error) {
         console.error("Error while processing flower data:", error);
     }
+}
+
+function getQueryParam(key){
+    let queryParams=new URLSearchParams(window.location.search);
+    return queryParams.has(key) ? queryParams.get(key) : null;
 }
 
 // function flower_cards() {
