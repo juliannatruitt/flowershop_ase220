@@ -113,3 +113,28 @@ function flower_details(id, flowerarray){
         window.location.href = 'index.html';
     }
 }
+
+$(document).on('click', '.btn-danger', function(event) {
+    event.stopPropagation();
+    console.log($(this))
+    const index = parseInt($(this).attr('data-index'));
+    console.log(index);
+    petarray.splice(index, 1);
+    $(this).closest('.col-lg-4').remove();
+    $.ajax({
+        type: "PUT",
+        url: document_url,
+        data: JSON.stringify(flowerarrayarray),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(xhr,data,response){
+            console.log(xhr);
+            console.log(data);
+            console.log(response);
+            console.log(response.getAllResponseHeaders());
+        },
+        error: function(errMsg) {
+            console.log(errMsg);
+        }
+    });
+});
