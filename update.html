@@ -10,11 +10,13 @@
     <body>
         <div class="container">
         <form>
-           <label for="name">Name</label><input type="text" id="name"></input><br />
-            Flowers: <input type="text" id="flowers"></input><br />
-            Occasion: <textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br />
-            Price: <input type="text" id="price"></input><br />
-            <button id="btn-save-changes" class="btn btn-primary">Save Changes</a>
+            <img id="flower_picture">
+            <div>Name<input type="text" id="name" /></div>
+            <div id="flowers"><label>Flowers:</label></div>
+            <div>Occasion: <textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br /></div>
+            <div>Price: <input type="text" id="price" /></div>
+            <div><button id="btn-save-changes" class="btn btn-primary">Save Changes</a></div>
+            <a href="index.html">Go back to index </a>
         </form>
         </div>
 
@@ -27,10 +29,14 @@
                 $.get(document_url, function(data, status){
                     flowerarray = data;
                     let id = getQueryParam('id')
+                    document.getElementById('flower_picture').src = flowerarray[id].image;
                     $('#name').val(`${flowerarray[id].name}`);
-                    //for (let i=0; i<flowerarray.flowers.length; i++){
-//
-                    //}
+                    $('#flowers').empty();
+                    for (let i=0; i<flowerarray[id].flowers.length; i++){
+                        console.log(flowerarray[id].flowers[i]);
+                        html = `<br /><input type="text" class="contained-flowers" value="${flowerarray[id].flowers[i]}" />`;
+                        $('#flowers').append(html);
+                    }
                     $('#occasion').val(`${flowerarray[id].occasion}`);
                     $('#price').val(`${flowerarray[id].price}`);
             });
