@@ -10,15 +10,8 @@
     <body>
         <div class="container">
         <form>
-<<<<<<< HEAD
-            <img id="flower_picture">
-            <div>Name<input type="text" id="name" /></div>
-            <div id="flowers">Flowers: </div>
-=======
-            <div>Image of the bouquet:<input type="file" id="flower_picture"></div>
             <div>Name of the bouquet:<input type="text" id="name" /></div>
             <div>Flowers in the bouquet:<input type="text" id="flowers"></div>
->>>>>>> e85f7a69970a5be39b834b8e85edaf4fd62c0fc6
             <div>Occasion: <textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br /></div>
             <div>Price: <input type="text" id="price" /></div>
             <div><button id="btn-save-changes" class="btn btn-primary">Save Changes</button></div>
@@ -37,7 +30,6 @@
                 $.get(document_url, function(data, status){
                     flowerarray = data;
                     id = getQueryParam('id')
-                    //document.getElementById('flower_picture').src = flowerarray[id].image;
                     $('#name').val(`${flowerarray[id].name}`);
                     $('#flowers').empty();
                     for (let i=0; i<flowerarray[id].flowers.length; i++){
