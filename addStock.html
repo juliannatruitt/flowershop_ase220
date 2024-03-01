@@ -9,9 +9,47 @@
         .container {
             padding: 20px;
         }
+        .navbar {
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+        .navbar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            text-align: center;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+        .navbar a:hover {
+            background-color: #555;
+        }
+        .navbar .active {
+            background-color: #4CAF50;
+        }
+        .container {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <p><a href="index.html">Home</a></p>
+        <p><a href="addStock.html" class="active">Stock Update</a></p>
+        <p><a href="services.html">Services</a></p>
+        <p><a href="#">Contact</a></p>
+    </div>
     <div class="container">
         <h2>Add Flower Stock</h2>
         <form id="flowerForm">
