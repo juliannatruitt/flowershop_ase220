@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -66,7 +66,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
     </body>
-</html> -->
+</html> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +132,7 @@
             </div>
             <div class="mb-3">
                 <label for="flowers" class="form-label">Flowers in the bouquet:</label>
-                <input type="text" class="form-control" id="flowers" name="flowers">
+                <input type="text" class="form-control" id="flowers" name="flowers" placeholder="Enter flowers seperated by commas">
             </div>
             <div class="mb-3">
                 <label for="occasion" class="form-label">Occasion:</label>
@@ -140,9 +140,9 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price:</label>
-                <input type="text" class="form-control" id="price" name="price">
+                <input type="number" class="form-control" id="price" name="price" placeholder="In numbers">
             </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" id="update-stock-save" class="btn btn-primary">Save Changes</button>
             <a href="index.html" class="btn btn-secondary">Go back to index</a>
         </form>
     </div>
@@ -150,39 +150,182 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="functions.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#flowerForm').submit(function(event) {
-                event.preventDefault();
-                let flowerData = {
-                    name: $('#name').val(),
-                    flowers: $('#flowers').val(),
-                    occasion: $('#occasion').val(),
-                    price: $('#price').val(),
-                    image: $('#flower_picture').val()
-                };
-                // Assuming you have a function to save data to JSONBlob
-                // Fetch existing data from the API
-                axios.get('YOUR_API_URL') // Replace 'YOUR_API_URL' with your actual API endpoint
-                    .then(response => {
-                        let existingData = response.data; // Existing data fetched from the API
-                        // Append the new flower data to the existing data
-                        existingData.push(flowerData);
-                        // Send the updated data back to the API
-                        axios.put('YOUR_API_URL', existingData) // Replace 'YOUR_API_URL' with your actual API endpoint
-                            .then(response => {
-                                console.log('Data saved successfully:', response);
-                                // Redirect or show success message as needed
-                            })
-                            .catch(error => {
-                                console.error('Error saving data:', error);
-                                // Handle error appropriately
-                            });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching existing data:', error);
-                        // Handle error appropriately
+        // $(document).on('click', '#update-stock-save', function(){
+        // try {
+        //     let flowerData = {
+        //         name: $('#name').val(),
+        //         flowers: $('#flowers').val().split(',').map(flower => flower.trim()),
+        //         occasion: $('#occasion').val(),
+        //         price: $('#price').val(),
+        //         image: $('#flower_picture').val()
+        //     };
+
+        //     // Assuming you have a function to save data to your API endpoint
+        //     $.ajax({
+        //         type: "PUT", // Change to POST if adding new flower
+        //         url: "https://jsonblob.com/api/1212461580683173888", 
+        //         data: JSON.stringify(flowerData),
+        //         contentType: "application/json; charset=utf-8",
+        //         dataType: "json",
+        //         success: function(xhr, data, response) {
+        //             console.log(xhr);
+        //             console.log(data);
+        //             console.log(response);
+        //             console.log(response.getAllResponseHeaders());
+        //         },
+        //         error: function(errMsg) {
+        //             console.error('Error saving flower data:', errMsg);
+        //         }
+        //     });
+        //     } catch(error) {
+        //         console.error("Error in adding flower:", error);
+        //     }
+        // });
+        var flowerarray = [];
+            var id = 0;
+            var totalflowers = 0;
+            document.addEventListener("DOMContentLoaded", function() {
+                $.get(document_url, function(data, status){
+                    flowerarray = data;
+                    id = getQueryParam('id');
+                    document.getElementById('flower_image').src = flowerarray[id].image;
+                    $('#name').val(flowerarray[id].name);
+                    $('#flowers').empty();
+                    for (let i=0; i<flowerarray[id].flowers.length; i++){
+                        console.log(flowerarray[id].flowers[i]);
+                        html = `<br /><input type="text" class="contained-flowers" id="flower${i}" value="${flowerarray[id].flowers[i]}" />`;
+                        $('#flowers').append(html);
+                        totalflowers++;
+                    }
+                    $('#occasion').val(flowerarray[id].occasion);
+                    $('#price').val(flowerarray[id].price);
+                });
+            });
+                $(document).ready(function(){
+                    $(document).on('click', '#update-stock-save', function(e){
+                        e.preventDefault();
+                        if ( $('#picture_change').val()){
+                            flowerarray[id].image = 'images/'+$('#picture_change')[0].files[0].name;
+                        }
+                        flowerarray[id].name=$('#name').val();
+                        for (let i=0; i<totalflowers; i++){
+                            flowerarray[id].flowers[i] = $(`#flower${i}`).val();
+                        }
+                        flowerarray[id].occasion = $('#occasion').val();
+                        flowerarray[id].price = $('#price').val();
+                        console.log(flowerarray[id]);
+
+                        $.ajax({
+                        type: "PUT",
+                        url: document_url,
+                        data: JSON.stringify(flowerarray),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(xhr,data,response){
+                            console.log(xhr);
+                            console.log(data);
+                            console.log(response);
+                            console.log(response.getAllResponseHeaders());
+                            window.location.href = "index.html";
+                        },
+                        error: function(errMsg) {
+                            alert(errMsg);
+                        }
                     });
+                });
+            });
+
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floreality - Add Stock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Flower Stock</h2>
+        <form id="flowerForm">
+            <div class="mb-3">
+                <label for="flower_picture" class="form-label">Image of the bouquet:</label>
+                <input type="file" class="form-control" id="flower_picture" name="image">
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name of the bouquet:</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="flowers" class="form-label">Flowers in the bouquet:</label>
+                <input type="text" class="form-control" id="flowers" name="flowers" placeholder="Enter flowers separated by commas">
+            </div>
+            <div class="mb-3">
+                <label for="occasion" class="form-label">Occasion:</label>
+                <textarea class="form-control" id="occasion" name="occasion" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Enter price">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="index.html" class="btn btn-secondary">Go back to index</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#flowerForm').submit(function(e){
+                e.preventDefault();
+                
+                // Fetch existing data
+                $.ajax({
+                    type: "GET",
+                    url: "https://jsonblob.com/api/1212461580683173888",
+                    success: function(existingData) {
+                        // Append new data to existing data
+                        const newFlower = {
+                            name: $('#name').val(),
+                            flowers: $('#flowers').val().split(',').map(flower => flower.trim()),
+                            occasion: $('#occasion').val(),
+                            price: $('#price').val(),
+                            image: $('#flower_picture').val()
+                        };
+                        existingData.push(newFlower);
+
+                        // Send updated data back to the server
+                        $.ajax({
+                            type: "PUT",
+                            url: "https://jsonblob.com/api/1212461580683173888",
+                            data: JSON.stringify(existingData),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(response) {
+                                console.log('New flower added successfully:', newFlower);
+                                console.log('Updated flower data:', response);
+                                window.location.href = "index.html";
+                            },
+                            error: function(xhr, textStatus, errorThrown) {
+                                console.error('Error adding new flower:', textStatus);
+                                alert('Error adding new flower:', textStatus);
+                            }
+                        });
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.error('Error fetching existing data:', textStatus);
+                        alert('Error fetching existing data:', textStatus);
+                    }
+                });
             });
         });
     </script>
