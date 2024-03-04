@@ -95,7 +95,7 @@
                             flowers: $('#flowers').val().split(',').map(flower => flower.trim()),
                             occasion: $('#occasion').val(),
                             price: $('#price').val(),
-                            image: $('#flower_picture').val()
+                            image: 'images/'+$('#flower_picture')[0].files[0].name
                         };
                         existingData.push(newFlower);
 
