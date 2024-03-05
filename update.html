@@ -12,7 +12,7 @@
         <form id="update-form" enctype="multipart/form-data">
             Picture:<div><input type="file" accept="image/jpg" id="picture_change" /> <img src="" id="flower_image" /></div>
             Name of the bouquet:<div><input type="text" id="name" /></div>
-            Flowers in the bouquet:<div id="flowers"><input type="text"></div>
+            Flowers in the bouquet:<button id="add_another_flower">+</button><div id="flowers"><input type="text"></div>
             Occasion:<div><textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br /></div>
             Price:<div><input type="text" id="price" /></div>
             <div><button id="btn-save-changes" class="btn btn-primary">Save Changes</button></div>
@@ -27,7 +27,6 @@
         <script>
             var flowerarray = [];
             var id = 0;
-            var totalflowers = 0;
             document.addEventListener("DOMContentLoaded", function() {
                 $.get(document_url, function(data, status){
                     flowerarray = data;
@@ -36,10 +35,8 @@
                     $('#name').val(flowerarray[id].name);
                     $('#flowers').empty();
                     for (let i=0; i<flowerarray[id].flowers.length; i++){
-                        console.log(flowerarray[id].flowers[i]);
-                        html = `<br /><input type="text" class="contained-flowers" id="flower${i}" value="${flowerarray[id].flowers[i]}" />`;
+                        html = `<br /><input type="text" class="contained-flowers" value="${flowerarray[id].flowers[i]}" /><button class="remove_flower">remove flower</button>`;
                         $('#flowers').append(html);
-                        totalflowers++;
                     }
                     $('#occasion').val(flowerarray[id].occasion);
                     $('#price').val(flowerarray[id].price);
@@ -52,12 +49,12 @@
                             flowerarray[id].image = 'images/'+$('#picture_change')[0].files[0].name;
                         }
                         flowerarray[id].name=$('#name').val();
-                        for (let i=0; i<totalflowers; i++){
-                            flowerarray[id].flowers[i] = $(`#flower${i}`).val();
-                        }
+                        flowerarray[id].flowers = [];
+                        $('.contained-flowers').each(function() {
+                            flowerarray[id].flowers.push($(this).val());
+                        });
                         flowerarray[id].occasion = $('#occasion').val();
                         flowerarray[id].price = $('#price').val();
-                        console.log(flowerarray[id]);
 
                         $.ajax({
                         type: "PUT",
@@ -75,9 +72,20 @@
                         error: function(errMsg) {
                             alert(errMsg);
                         }
+                        });
                     });
+                    $(document).on('click', '#add_another_flower', function(e){
+                        e.preventDefault();
+                        html = `<br /><input type="text" class="contained-flowers" /><button class="remove_flower">remove flower</button>`;
+                        $('#flowers').append(html);
+                    });
+
+                    $(document).on('click', '.remove_flower', function(e){
+                        e.preventDefault();
+                        $(this).prev().remove();  
+                        $(this).remove(); 
+                    })
                 });
-            });
 
         </script>
     </body>
