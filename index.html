@@ -86,7 +86,6 @@
           });
           $(()=>{
             $(document).on('click', '.btn_pagination', function(){
-              console.log($(this));
               let buttons = document.querySelectorAll('.btn_pagination');
               for(let i=0; i<buttons.length; i++){
                 buttons[i].classList.remove('disabled');
@@ -101,6 +100,7 @@
               document.getElementById('flower_container').innerHTML='';
               add_the_flowers_to_page();
             });
+
             $(document).on('click', '.btn-danger', function(event) {
               event.stopPropagation();
               const index = parseInt($(this).attr('data-index'));
