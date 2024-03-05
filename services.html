@@ -10,6 +10,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: pink;
+            overflow-x: hidden;
         }
         .navbar {
             height: 100vh;
@@ -19,6 +20,7 @@
             left: 0;
             background-color: lavender;
             padding-top: 20px;
+            overflow-y: auto;
         }
         .navbar a {
             display: block;
@@ -33,11 +35,14 @@
             background-color: #555;
         }
         .navbar .active {
-            background-color: #4CAF50;
+            background-color: violet;
         }
         .container {
             margin-left: 220px;
             padding: 20px;
+            width: calc(100% - 220px);
+            max-width: 100%;
+            overflow: hidden;
         }
         h1 {
             text-align: center;

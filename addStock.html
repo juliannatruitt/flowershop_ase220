@@ -8,6 +8,7 @@
     <style>
         body {
             background-color: pink;
+            overflow-x: hidden;
         }
         .container {
             padding: 20px;
@@ -29,16 +30,20 @@
             text-align: center;
             padding-left: 3rem;
             padding-right: 3rem;
+            overflow-y: auto;
         }
         .navbar a:hover {
             background-color: #555;
         }
         .navbar .active {
-            background-color: #4CAF50;
+            background-color: violet;
         }
         .container {
             margin-left: 220px;
             padding: 20px;
+            width: calc(100% - 220px);
+            max-width: 100%;
+            overflow: hidden;
         }
         h1 {
             text-align: center;

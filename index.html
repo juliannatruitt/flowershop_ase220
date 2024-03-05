@@ -7,8 +7,19 @@
         <link href="reboot.css"></link>
         <title>Floreality</title>
         <style>
+            .btn_pagination {
+                background-color: lightgrey;
+                border-color: purple;
+                color: purple;
+            }
+            .btn_pagination:hover {
+                background-color: bisque;
+                border-color: purple;
+                color: purple;
+            }
             body {
                 background-color: palevioletred;
+                overflow-x: hidden;
             }
             h1 {
                 float: none;
@@ -28,6 +39,7 @@
                 left: 0;
                 padding-top: 20px;
                 background-color: lavender;
+                overflow-y: auto;
             }
 
             .navbar a {
@@ -46,12 +58,15 @@
             }
 
             .navbar .active {
-                background-color: #4CAF50;
+                background-color: violet;
             }
 
             .container {
                 margin-left: 220px;
                 padding: 20px;
+                width: calc(100% - 220px);
+                max-width: 100%;
+                overflow: hidden;
             }
         </style>
     </head>
