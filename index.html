@@ -64,7 +64,7 @@
         </div>
         <div class="container">
             <div class="row" id="flower_container">	</div>
-            <div><button class='btn btn-primary' id="more_flowers">load more flowers</button></div>
+            <div id="hold_buttons"></div>
         </div>
         <script src="functions.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -72,84 +72,86 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
+          var flowerarray= [];
+          let pages = 0;
+          var offset = 0;
+          var rpp = 3;
 		      document.addEventListener("DOMContentLoaded", async function() {
-              $.get(document_url, function(data, status){
+              await $.get(document_url, function(data, status){
                 flowerarray = data;
-                for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
-                  flower_card(flowerarray[i], i);
-              }
+                pages = calculate_pages(flowerarray);
+                add_the_flowers_to_page();
+                create_pagination_buttons(pages);
             });
           });
           $(()=>{
-            $(document).on('click', '#more_flowers', function() {
-              offset+=3;
-              for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
-                flower_card(flowerarray[i], i);
-                if (offset+rpp > flowerarray.length-1) more_flowers.hidden = true; 
+            $(document).on('click', '.btn_pagination', function(){
+              let buttons = document.querySelectorAll('.btn_pagination');
+              for(let i=0; i<buttons.length; i++){
+                buttons[i].classList.remove('disabled');
+                buttons[i].classList.remove('btn-primary');
+                buttons[i].classList.add('btn-outline-primary');
               }
+              $(this).removeClass('btn-outline-primary');
+              $(this).addClass('btn-primary');
+              $(this).addClass('disabled')
+              let pageNumber = parseInt($(this).data('page'));
+              offset=(pageNumber-1)*rpp;
+              document.getElementById('flower_container').innerHTML='';
+              add_the_flowers_to_page();
+            });
+
+            $(document).on('click', '.btn-danger', function(event) {
+              event.stopPropagation();
+              const index = parseInt($(this).attr('data-index'));
+              flowerarray.splice(index, 1);
+              $(this).closest('.col-lg-4').remove();
+              document.getElementById('flower_container').innerHTML = '';
+              pages = calculate_pages(flowerarray);
+              if (offset >= flowerarray.length) {
+                offset = Math.max(0, flowerarray.length - rpp);
+              }
+              create_pagination_buttons(pages);
+              add_the_flowers_to_page();
+              $.ajax({
+                type: "PUT",
+                url: document_url,
+                data: JSON.stringify(flowerarray),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(xhr,data,response){
+                  console.log(xhr);
+                  console.log(data);
+                  console.log(response);
+                  console.log(response.getAllResponseHeaders());
+                },
+                error: function(errMsg) {
+                  console.log(errMsg);
+                }
+              });
             });
           });
-          $(document).on('click', '.btn-danger', function(event) {
-                event.stopPropagation();
-                console.log($(this))
-                const index = parseInt($(this).attr('data-index'));
-                console.log(index);
-                flowerarray.splice(index, 1);
-                $(this).closest('.col-lg-4').remove();
-                $.ajax({
-                    type: "PUT",
-                    url: document_url,
-                    data: JSON.stringify(flowerarray),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(xhr,data,response){
-                        console.log(xhr);
-                        console.log(data);
-                        console.log(response);
-                        console.log(response.getAllResponseHeaders());
-                    },
-                    error: function(errMsg) {
-                        console.log(errMsg);
-                    }
-                });
-            });
-
-          //   $(document).on('click', '.btn-primary-add-stock', function(){
-          //     try{
-          //       let flower={
-          //         name:$('[name=name]').val(),
-          //         flowers:$('[name=flowers]').val(),
-          //         occasion:$('[name=occasion]').val(),
-          //         price:$('[name=price]').val(),
-          //         image:$('[name=image]').val(),
-          //       };
-
-          //       flowerarray.push(flower);
-          //       flower_card(flower, flowerarray.length);
-          //       console.log(flowerarray);
-
-          //       $.ajax({
-          //       type: "PUT",
-          //       url: document_url,
-          //       data: JSON.stringify(flowerarray),
-          //       contentType: "application/json; charset=utf-8",
-          //       dataType: "json",
-          //       success: function(xhr,data,response){
-          //         console.log(xhr);
-          //         console.log(data);
-          //         console.log(response);
-          //         console.log(response.getAllResponseHeaders());
-          //       },
-          //       error: function(errMsg) {
-          //         alert(errMsg);
-          //       }
-          //     });
-          //   } catch(error){
-          //     console.error("Error in adding:", error);
-          //   }
-          // });
         </script>
     </body>
     <footer>
     </footer>
 </html>
+<!--
+CODE for keeping "load more button":
+<div><button class='btn btn-primary' id="more_flowers">load more flowers</button></div>
+
+for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
+                  flower_card(flowerarray[i], i);
+}
+
+$(document).on('click', '#more_flowers', function() {
+  offset+=3;
+  for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
+    flower_card(flowerarray[i], i);
+    if (offset+rpp > flowerarray.length-1) more_flowers.hidden = true; 
+  }
+});
+
+<div><button class='btn btn-primary' id="more_flowers">load more flowers</button></div>
+
+-->
