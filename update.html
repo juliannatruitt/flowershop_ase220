@@ -9,7 +9,8 @@
     </head>
     <body>
         <div class="container">
-        <form>
+        <form id="update-form" enctype="multipart/form-data">
+            Picture:<div><input type="file" accept="image/jpg" id="picture_change" /> <img src="" id="flower_image" /></div>
             Name of the bouquet:<div><input type="text" id="name" /></div>
             Flowers in the bouquet:<div id="flowers"><input type="text"></div>
             Occasion:<div><textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br /></div>
@@ -26,32 +27,58 @@
         <script>
             var flowerarray = [];
             var id = 0;
+            var totalflowers = 0;
             document.addEventListener("DOMContentLoaded", function() {
                 $.get(document_url, function(data, status){
                     flowerarray = data;
-                    id = getQueryParam('id')
-                    $('#name').val(`${flowerarray[id].name}`);
+                    id = getQueryParam('id');
+                    document.getElementById('flower_image').src = flowerarray[id].image;
+                    $('#name').val(flowerarray[id].name);
                     $('#flowers').empty();
                     for (let i=0; i<flowerarray[id].flowers.length; i++){
                         console.log(flowerarray[id].flowers[i]);
-                        html = `<br /><input type="text" class="contained-flowers" value="${flowerarray[id].flowers[i]}" />`;
+                        html = `<br /><input type="text" class="contained-flowers" id="flower${i}" value="${flowerarray[id].flowers[i]}" />`;
                         $('#flowers').append(html);
+                        totalflowers++;
                     }
                     $('#occasion').val(flowerarray[id].occasion);
-                    $('#price').val(`${flowerarray[id].price}`);
+                    $('#price').val(flowerarray[id].price);
                 });
             });
                 $(document).ready(function(){
-                    console.log(flowerarray);
                     $(document).on('click', '#btn-save-changes', function(e){
                         e.preventDefault();
+                        if ( $('#picture_change').val()){
+                            flowerarray[id].image = 'images/'+$('#picture_change')[0].files[0].name;
+                        }
                         flowerarray[id].name=$('#name').val();
+                        for (let i=0; i<totalflowers; i++){
+                            flowerarray[id].flowers[i] = $(`#flower${i}`).val();
+                        }
                         flowerarray[id].occasion = $('#occasion').val();
                         flowerarray[id].price = $('#price').val();
                         console.log(flowerarray[id]);
-                    // console.log(flowerarray[id]);
-                    })
+
+                        $.ajax({
+                        type: "PUT",
+                        url: document_url,
+                        data: JSON.stringify(flowerarray),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(xhr,data,response){
+                            console.log(xhr);
+                            console.log(data);
+                            console.log(response);
+                            console.log(response.getAllResponseHeaders());
+                            window.location.href = "index.html";
+                        },
+                        error: function(errMsg) {
+                            alert(errMsg);
+                        }
+                    });
+                });
             });
+
         </script>
     </body>
 </html>
