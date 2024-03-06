@@ -29,12 +29,6 @@ function getQueryParam(key){
     return queryParams.has(key) ? queryParams.get(key) : null;
 }
 
-// Function to handle editing a flower card
-function edit_flower(index, newData) {
-    flowerarray[index] = newData;
-    renderFlowerCards(); // Re-render flower cards after editing
-}
-
 function flower_details(id, flowerarray){
     console.log(id);
     if (id !== null && id >= 0 && id < flowerarray.length) {
