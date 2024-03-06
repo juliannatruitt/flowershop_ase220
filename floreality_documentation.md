@@ -1,4 +1,4 @@
-# Florality
+# Floreality
 
 **Team members:**
 
@@ -10,13 +10,13 @@
 
 **Abstract:**
 
-Florality is a small flower shop, providing customers with a great
+Floreality is a small flower shop, providing customers with a great
 selection of fabulous bouquets. Since sales and stock keep increasing,
-Florality wants to implement a way to store their inventory online and a
+Floreality wants to implement a way to store their inventory online and a
 way for store management to add new bouquets to the inventory, remove
 bouquet, changes details on the bouquets, and more. Our team has
 dedicated efforts to create a visually appealing and efficient solution
-for Florality, ensuring that the less tech-savvy management can easily
+for Floreality, ensuring that the less tech-savvy management can easily
 navigate and utilize the user friendly website without much hassle.
 
 **Proposed Solution:**
