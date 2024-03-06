@@ -6,15 +6,60 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
         <link href="reboot.css"></link>
         <script src="functions.js"></script>
+        <style>
+        body {
+            background-color: #F5E1FF;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #FFF0F5;
+            padding: 20px;
+            border: 1px solid #483D8B;
+            border-radius: 5px;
+            margin: 20px;
+            height: calc(100vh - 124px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #flower_image {
+            width: 200px; 
+            height: auto; 
+            margin-bottom: 20px; 
+        }
+        #add_another_flower {
+            color: white;
+            margin: 5px;
+            background-color: green;
+        }
+        .remove_flower {
+            margin-left: 10px;
+            background-color: red;
+            color: white;
+            margin: 5px;
+        }
+
+        #btn-save-changes{
+            margin-right: 20px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        </style>
     </head>
     <body>
         <div class="container">
         <form id="update-form" enctype="multipart/form-data">
-            Picture:<div><input type="file" accept="image/jpg" id="picture_change" /> <img src="" id="flower_image" /></div>
-            Name of the bouquet:<div><input type="text" id="name" /></div>
-            Flowers in the bouquet:<button id="add_another_flower">+</button><div id="flowers"><input type="text"></div>
-            Occasion:<div><textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br /></div>
-            Price:<div><input type="text" id="price" /></div>
+            <b>Picture:</b><div><input type="file" accept="image/jpg" id="picture_change" /> <img src="" id="flower_image" /></div>
+            <b>Name of the bouquet:</b><div><input type="text" id="name" /></div>
+            <b>Flowers in the bouquet:</b><button id="add_another_flower">+</button><div id="flowers"><input type="text"></div>
+            <b>Occasion:</b><div><textarea id="occasion" style="width: 400px; height: 100px;"></textarea><br /></div>
+            <b>Price:</b><div><input type="text" id="price" /></div>
             <div><button id="btn-save-changes" class="btn btn-primary">Save Changes</button></div>
             <a href="index.html">Go back to index </a>
         </form>

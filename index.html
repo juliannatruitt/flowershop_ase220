@@ -152,22 +152,3 @@
     <footer>
     </footer>
 </html>
-<!--
-CODE for keeping "load more button":
-<div><button class='btn btn-primary' id="more_flowers">load more flowers</button></div>
-
-for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
-                  flower_card(flowerarray[i], i);
-}
-
-$(document).on('click', '#more_flowers', function() {
-  offset+=3;
-  for (let i=offset; i < Math.min(offset+rpp, flowerarray.length); i++){
-    flower_card(flowerarray[i], i);
-    if (offset+rpp > flowerarray.length-1) more_flowers.hidden = true; 
-  }
-});
-
-<div><button class='btn btn-primary' id="more_flowers">load more flowers</button></div>
-
--->

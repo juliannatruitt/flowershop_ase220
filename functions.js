@@ -1,7 +1,5 @@
-//var offset = 0;
-//var rpp = 3;
 let document_url = "https://jsonblob.com/api/1212461580683173888"
-//var flowerarray= [];
+
 
 async function flower_card(flower, index) {
     try {
